@@ -15,14 +15,15 @@ currentPlayer = "X"
 winner = None
 gameRunning = True
 
-def printBoard(board):
+def printBoard(board) -> None:
     print(board[0] + " | " + board[1] + " | " + board[2])
     print("----------")
     print(board[3] + " | " + board[4] + " | " + board[5])
     print("----------")
     print(board[6] + " | " + board[7] + " | " + board[8])
-    
-def playerInput(board):
+    return
+
+def playerInput(board:list[int]):
     while True:
         try:
           inp = int(input("Enter a number between 1 to 9. "))
@@ -34,38 +35,38 @@ def playerInput(board):
         except ValueError:
              print("Invalid input! Please enter a number between 1 to 9.")
 
-def checkHorizontal(board):
+def checkHorizontal(board:list[int]):
     global winner
-    if board[0] == board[1] == board[2] and board[0] != "-":
+    if (board[0] == board[1] == board[2]) and board[0] != "-":
        winner = board[0]
        return True
-    elif board[3] == board[4] == board[5] and board[3] != "-":
+    elif (board[3] == board[4] == board[5]) and board[3] != "-":
          winner = board[3]
          return True
-    elif board[6] == board[7] == board[8] and board[6] != "-":
+    elif (board[6] == board[7] == board[8]) and board[6] != "-":
          winner = board[6]
          return True
     return False
 
-def checkVertical(board):
+def checkVertical(board:list[int]):
     global winner 
-    if board[0] == board[3] == board[6] and board[0] != "-":
+    if (board[0] == board[3] == board[6]) and board[0] != "-":
        winner = board[0]
        return True
-    elif board[1] == board[4] == board[7] and board[1] != "-":
+    elif (board[1] == board[4] == board[7]) and board[1] != "-":
          winner = board[1]
          return True
-    elif board[2] == board[5] == board[8] and board[2] != "-":
+    elif (board[2] == board[5] == board[8]) and board[2] != "-":
          winner = board[2]
          return True
     return False
 
-def checkDiagonal(board):
+def checkDiagonal(board:list[int]):
     global winner 
-    if board[0] == board[4] == board[8] and board[0] != "-":
+    if (board[0] == board[4] == board[8]) and board[0] != "-":
        winner = board[0]
        return True
-    elif board[2] == board[4] == board[6] and board[2] != "-":
+    elif (board[2] == board[4] == board[6]) and board[2] != "-":
          winner = board[2]
          return True
     return False
@@ -77,14 +78,14 @@ def switchPlayer():
     else:
         currentPlayer = "X"
 
-def checkTie(board):
+def checkTie(board:list[int]):
     global gameRunning
     if "-" not in board:
         printBoard(board)
         print("It is a tie!")
         gameRunning = False
 
-def checkWin(board):
+def checkWin(board:list[int]):
     if checkHorizontal(board) or checkDiagonal(board) or checkVertical(board):
        printBoard(board)
        print(f"Yayyyy! The winner is {winner}. ")
